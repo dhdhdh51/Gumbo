@@ -43,14 +43,22 @@ class AppTheme {
         ),
         margin: EdgeInsets.zero,
       ),
+      // Button minimums are deliberately finite.
+      //
+      // Size.fromHeight(h) is Size(double.infinity, h). A theme-wide infinite
+      // minimum width works only where the parent already constrains width; as
+      // a non-flex child of a Row the constraints are unbounded, so the button
+      // throws "BoxConstraints forces an infinite width", never lays out, and
+      // simply does not paint in a release build. Full-width buttons come from
+      // the layout instead: a stretched Column, an Expanded, or a list item.
       filledButtonTheme: FilledButtonThemeData(
         style: FilledButton.styleFrom(
-          minimumSize: const Size.fromHeight(52),
+          minimumSize: const Size(88, 52),
           textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
-        style: OutlinedButton.styleFrom(minimumSize: const Size.fromHeight(48)),
+        style: OutlinedButton.styleFrom(minimumSize: const Size(88, 48)),
       ),
       inputDecorationTheme: const InputDecorationTheme(
         border: OutlineInputBorder(),

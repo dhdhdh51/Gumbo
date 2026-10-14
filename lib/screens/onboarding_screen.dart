@@ -28,6 +28,7 @@ class OnboardingScreen extends ConsumerStatefulWidget {
 class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   final _controller = PageController();
   final _nameController = TextEditingController();
+  final _ageController = TextEditingController();
   final _heightController = TextEditingController();
   final _weightController = TextEditingController();
 
@@ -52,6 +53,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     if (existing != null) {
       _nameController.text = existing.name;
       _age = existing.age;
+      _ageController.text = existing.age.toString();
       _sex = existing.sex;
       _heightController.text = existing.heightCm.toStringAsFixed(0);
       _weightController.text = existing.weightKg.toStringAsFixed(1);
@@ -69,6 +71,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   void dispose() {
     _controller.dispose();
     _nameController.dispose();
+    _ageController.dispose();
     _heightController.dispose();
     _weightController.dispose();
     super.dispose();
@@ -245,26 +248,50 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                   ),
                 ),
               ),
-            Padding(
-              padding: const EdgeInsets.all(Gap.m),
-              child: Row(
-                children: [
-                  Text(
-                    l10n.onboardingStep(_step + 1, _stepCount),
-                    style: Theme.of(context).textTheme.bodySmall,
-                  ),
-                  const Spacer(),
-                  FilledButton(
-                    onPressed: _next,
-                    child: Text(
-                      isLast
-                          ? (widget.editing
-                              ? l10n.actionSave
-                              : l10n.onboardingFinish)
-                          : l10n.actionNext,
+            // Bottom bar. Every button sits inside an Expanded so its width
+            // is always bounded, and Back is offered explicitly rather than
+            // relying on the app bar arrow alone.
+            SafeArea(
+              top: false,
+              child: Padding(
+                padding: const EdgeInsets.all(Gap.m),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      l10n.onboardingStep(_step + 1, _stepCount),
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.bodySmall,
                     ),
-                  ),
-                ],
+                    Gap.h8,
+                    Row(
+                      children: [
+                        if (_step > 0 || widget.editing) ...[
+                          Expanded(
+                            child: OutlinedButton(
+                              onPressed: _back,
+                              child: Text(l10n.actionBack),
+                            ),
+                          ),
+                          Gap.w8,
+                        ],
+                        Expanded(
+                          flex: 2,
+                          child: FilledButton(
+                            onPressed: _next,
+                            child: Text(
+                              isLast
+                                  ? (widget.editing
+                                      ? l10n.actionSave
+                                      : l10n.onboardingFinish)
+                                  : l10n.actionNext,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
@@ -328,10 +355,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         keyboardType: TextInputType.number,
         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
         decoration: InputDecoration(labelText: l10n.onboardingAge),
-        controller: TextEditingController(text: _age?.toString() ?? '')
-          ..selection = TextSelection.collapsed(
-            offset: (_age?.toString() ?? '').length,
-          ),
+        // A persistent controller. Constructing one inside build() replaces it
+        // on every keystroke, which loses the cursor position and leaks.
+        controller: _ageController,
         onChanged:
             (v) => setState(() {
               _age = int.tryParse(v);

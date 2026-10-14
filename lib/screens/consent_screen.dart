@@ -30,6 +30,10 @@ class _ConsentScreenState extends ConsumerState<ConsentScreen> {
     return Scaffold(
       body: SafeArea(
         child: Column(
+          // Stretch so the Continue button spans the width. The button theme
+          // deliberately carries a finite minimum width, so full width has to
+          // come from the layout.
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Expanded(
               child: SingleChildScrollView(
