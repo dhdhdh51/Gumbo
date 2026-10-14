@@ -1,0 +1,163 @@
+{
+ "dataset": "safety_rules",
+ "description": "Age gates, pre-exercise screening and safe calorie and weight-change limits. Entries with \"origin\": \"source\" carry a sourceId and reproduce a published figure. Entries with \"origin\": \"app_policy\" are conservative guards chosen for this app; they are not attributed to any publication and are labelled as app rules in the UI.",
+ "disclaimer": {
+  "id": "main_disclaimer",
+  "text": "This app gives general fitness and nutrition information based on WHO and ICMR-NIN guidelines. It is not medical advice and does not replace a doctor or dietitian. Consult a qualified doctor before starting any exercise or diet program, especially if you have a health condition, are pregnant, are under 18 or over 60. Stop immediately and seek medical help if you feel chest pain, dizziness, severe breathlessness or sharp pain."
+ },
+ "ageRules": [
+  {
+   "id": "under_13_blocked",
+   "minAge": 0,
+   "maxAge": 12,
+   "access": "blocked",
+   "allowCalorieDeficit": false,
+   "allowWeightLossGoal": false,
+   "message": "This app is not built for children under 13. Please use it together with a parent and a doctor, who can plan activity and food that is right for this age.",
+   "origin": "app_policy"
+  },
+  {
+   "id": "teen_13_17_activity_only",
+   "minAge": 13,
+   "maxAge": 17,
+   "access": "activity_only",
+   "allowCalorieDeficit": false,
+   "allowWeightLossGoal": false,
+   "activityBandId": "child_5_17",
+   "message": "Under 18 you get activity guidance only. This app will not set a calorie deficit or a weight-loss target for you. Growth and nutrition at this age should be planned with a doctor or dietitian.",
+   "origin": "app_policy",
+   "supportingSourceId": "who_pa_guidelines_2020"
+  },
+  {
+   "id": "adult_18_59_full",
+   "minAge": 18,
+   "maxAge": 59,
+   "access": "full",
+   "allowCalorieDeficit": true,
+   "allowWeightLossGoal": true,
+   "activityBandId": "adult_18_64",
+   "origin": "app_policy"
+  },
+  {
+   "id": "older_60_plus",
+   "minAge": 60,
+   "maxAge": null,
+   "access": "full_lighter_default",
+   "allowCalorieDeficit": true,
+   "allowWeightLossGoal": true,
+   "activityBandId": "adult_18_64",
+   "activityBandIdFrom65": "older_65_plus",
+   "defaultIntensity": "light",
+   "defaultExperienceCap": "beginner",
+   "message": "Because you are 60 or older, this app starts you on a lighter default intensity and adds balance and strength work. Please talk to your doctor before you start, and stop any exercise that causes pain, dizziness or breathlessness.",
+   "origin": "app_policy",
+   "supportingSourceId": "icmr_dgi_2024",
+   "supportingNote": "ICMR-NIN Dietary Guidelines for Indians 2024 treats over 60 years as the elderly band and recommends additional strength and functional balance activity on three or more days a week. It also advises that men and women over 40 consult a doctor before starting a vigorous activity programme. WHO 2020 uses 65 years and older for its older adult recommendations."
+  }
+ ],
+ "calorieSafety": {
+  "weightReductionFloorKcal": {
+   "value": 1000,
+   "note": "Weight reduction diets should not be less than 1000 kcal/day and should provide all nutrients.",
+   "origin": "source",
+   "sourceId": "icmr_dgi_2024"
+  },
+  "maxDeficitPercentOfNeeds": {
+   "value": 40,
+   "note": "It is advisable not to go beyond a 40% energy deficit of daily energy needs, so that muscle mass and protein balance are maintained.",
+   "origin": "source",
+   "sourceId": "icmr_dgi_2024"
+  },
+  "typicalDeficitRangeKcal": {
+   "min": 500,
+   "max": 750,
+   "note": "A typical energy-deficient weight loss diet is a 500-750 kcal/day deficit.",
+   "origin": "source",
+   "sourceId": "icmr_dgi_2024"
+  },
+  "bmrFloor": {
+   "note": "This app never sets a daily calorie target below the user's own resting energy expenditure calculated with the Mifflin-St Jeor equation. The equation is published; using it as a lower bound is this app's safety choice.",
+   "origin": "app_policy",
+   "supportingSourceId": "mifflin_st_jeor_1990"
+  },
+  "defaultLoseDeficitKcal": {
+   "value": 400,
+   "note": "Default starting deficit for a Lose goal, kept inside the published 500-750 kcal range and then clamped by the floor and maximum-deficit rules.",
+   "origin": "app_policy",
+   "supportingSourceId": "icmr_dgi_2024"
+  },
+  "defaultGainSurplusKcal": {
+   "value": 300,
+   "note": "Default starting surplus for a Gain goal.",
+   "origin": "app_policy"
+  },
+  "stallAdjustmentKcal": {
+   "min": 100,
+   "max": 150,
+   "weeksBeforeAdjust": 2,
+   "note": "If measured weight has not moved towards the goal across two consecutive weekly check-ins, the daily target is adjusted by this amount and then re-clamped by all safe limits.",
+   "origin": "app_policy"
+  }
+ },
+ "weightChangeSafety": {
+  "maxLossKgPerWeek": {
+   "value": 0.5,
+   "note": "A reduction of half a kilogram of body weight per week is considered to be safe. Rapid weight loss approaches should be avoided.",
+   "origin": "source",
+   "sourceId": "icmr_dgi_2024"
+  },
+  "maxLossPercentBodyWeightPerWeek": {
+   "value": 1.0,
+   "note": "Additional guard so that the weekly loss cap never exceeds 1% of current body weight. This matters for lighter users, for whom half a kilogram would be a larger share of body weight.",
+   "origin": "app_policy"
+  },
+  "minBmiForWeightLossGoal": {
+   "value": 18.5,
+   "note": "The Lose goal is disabled below a BMI of 18.5, which ICMR-NIN gives as the lower end of the normal BMI range for Indian adults.",
+   "origin": "source",
+   "sourceId": "icmr_dgi_2024"
+  },
+  "maxGainKgPerWeek": {
+   "value": 0.5,
+   "note": "Weekly cap for a Gain goal, set to the same half a kilogram per week that ICMR-NIN gives as a safe rate of change, so that a surplus cannot run away. The default Gain surplus of 300 kcal/day sits inside this cap.",
+   "origin": "app_policy",
+   "supportingSourceId": "icmr_dgi_2024"
+  }
+ },
+ "questionnaire": {
+  "id": "preexercise_screening",
+  "note": "Pre-exercise screening questions written for this app, in the style of a readiness questionnaire. They are a safety prompt only. This app does not diagnose anything and does not replace a medical assessment. ICMR-NIN advises that people with chronic disease, and anyone over 40 starting vigorous activity, consult a doctor first.",
+  "supportingSourceId": "icmr_dgi_2024",
+  "items": [
+   {"id": "heart_condition", "severity": "serious", "labelKey": "qHeartCondition"},
+   {"id": "chest_pain", "severity": "serious", "labelKey": "qChestPain"},
+   {"id": "high_blood_pressure", "severity": "serious", "labelKey": "qHighBp"},
+   {"id": "low_blood_pressure", "severity": "serious", "labelKey": "qLowBp"},
+   {"id": "diabetes", "severity": "serious", "labelKey": "qDiabetes"},
+   {"id": "asthma", "severity": "serious", "labelKey": "qAsthma"},
+   {"id": "recent_surgery", "severity": "serious", "labelKey": "qRecentSurgery"},
+   {"id": "pregnant_postpartum", "severity": "serious", "labelKey": "qPregnancy"},
+   {"id": "eating_disorder", "severity": "serious", "labelKey": "qEatingDisorder"},
+   {"id": "thyroid", "severity": "caution", "labelKey": "qThyroid"},
+   {"id": "joint_back_injury", "severity": "caution", "labelKey": "qJointInjury"},
+   {"id": "regular_medication", "severity": "caution", "labelKey": "qMedication"},
+   {"id": "other_problem", "severity": "caution", "labelKey": "qOtherProblem"}
+  ]
+ },
+ "dailyCheck": {
+  "id": "pre_workout_check",
+  "note": "Asked every single time the user taps Start Workout.",
+  "redFlags": [
+   {"id": "chest_pain_today", "labelKey": "flagChestPain"},
+   {"id": "fainting_today", "labelKey": "flagFainting"},
+   {"id": "severe_breathlessness_today", "labelKey": "flagBreathless"}
+  ],
+  "redFlagAction": "stop_and_seek_help",
+  "yesOptions": ["light_activity_only", "skip_today"]
+ },
+ "weeklyCheck": {
+  "id": "weekly_health_check",
+  "note": "Asked at every weekly check-in. A yes answer pauses automatic diet changes until the user clears it.",
+  "pausesDietChanges": true
+ }
+}

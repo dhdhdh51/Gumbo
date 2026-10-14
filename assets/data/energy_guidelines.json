@@ -1,0 +1,274 @@
+{
+ "dataset": "energy_guidelines",
+ "description": "Energy and protein requirements for Indians. All published figures are from the ICMR-NIN Expert Group report on Nutrient Requirements for Indians (RDA and EAR), 2020. Where a value is arithmetic on published values rather than printed in the source, it is flagged with \"derived\": true and carries the formula used.",
+ "bmrEquation": {
+  "id": "mifflin_st_jeor",
+  "name": "Mifflin-St Jeor resting energy expenditure equation",
+  "formulaMale": "10 * weightKg + 6.25 * heightCm - 5 * ageYears + 5",
+  "formulaFemale": "10 * weightKg + 6.25 * heightCm - 5 * ageYears - 161",
+  "unit": "kcal/day",
+  "sourceId": "mifflin_st_jeor_1990"
+ },
+ "activityLevels": [
+  {
+   "id": "sedentary",
+   "label": "Sedentary work",
+   "male": {
+    "referenceWeightKg": 65.0,
+    "kcalPerDay": 2110,
+    "kcalPerKgPerDay": 32,
+    "pal": 1.4,
+    "palDerived": false
+   },
+   "female": {
+    "referenceWeightKg": 55.0,
+    "kcalPerDay": 1660,
+    "kcalPerKgPerDay": 30,
+    "pal": 1.4,
+    "palDerived": false
+   },
+   "palNote": "ICMR-NIN 2020 states that recalculation with Indian physical activity ratio data lowered the sedentary value from 1.53 (RDA 2010) to 1.40.",
+   "sourceId": "icmr_rda_2020"
+  },
+  {
+   "id": "moderate",
+   "label": "Moderate work",
+   "male": {
+    "referenceWeightKg": 65.0,
+    "kcalPerDay": 2710,
+    "kcalPerKgPerDay": 42,
+    "pal": 1.84,
+    "palDerived": true,
+    "palFormula": "1.40 * 42 / 32"
+   },
+   "female": {
+    "referenceWeightKg": 55.0,
+    "kcalPerDay": 2130,
+    "kcalPerKgPerDay": 39,
+    "pal": 1.82,
+    "palDerived": true,
+    "palFormula": "1.40 * 39 / 30"
+   },
+   "palNote": "kcalPerDay and kcalPerKgPerDay are printed in ICMR-NIN 2020. The PAL is scaled from the published sedentary PAL of 1.40 using the published kcal/kg ratio for the same sex.",
+   "sourceId": "icmr_rda_2020"
+  },
+  {
+   "id": "heavy",
+   "label": "Heavy work",
+   "male": {
+    "referenceWeightKg": 65.0,
+    "kcalPerDay": 3470,
+    "kcalPerKgPerDay": 53,
+    "pal": 2.32,
+    "palDerived": true,
+    "palFormula": "1.40 * 53 / 32"
+   },
+   "female": {
+    "referenceWeightKg": 55.0,
+    "kcalPerDay": 2720,
+    "kcalPerKgPerDay": 49,
+    "pal": 2.29,
+    "palDerived": true,
+    "palFormula": "1.40 * 49 / 30"
+   },
+   "palNote": "kcalPerDay and kcalPerKgPerDay are printed in ICMR-NIN 2020. The PAL is scaled from the published sedentary PAL of 1.40 using the published kcal/kg ratio for the same sex.",
+   "sourceId": "icmr_rda_2020"
+  }
+ ],
+ "referenceEnergyByAge": [
+  {
+   "group": "children_4_6",
+   "label": "Children 4-6 years",
+   "minAge": 4,
+   "maxAge": 6,
+   "sex": "any",
+   "referenceWeightKg": 18.3,
+   "kcalPerDay": 1360,
+   "kcalPerKgPerDay": 74,
+   "sourceId": "icmr_rda_2020"
+  },
+  {
+   "group": "children_7_9",
+   "label": "Children 7-9 years",
+   "minAge": 7,
+   "maxAge": 9,
+   "sex": "any",
+   "referenceWeightKg": 25.3,
+   "kcalPerDay": 1700,
+   "kcalPerKgPerDay": 67,
+   "sourceId": "icmr_rda_2020"
+  },
+  {
+   "group": "boys_10_12",
+   "label": "Boys 10-12 years",
+   "minAge": 10,
+   "maxAge": 12,
+   "sex": "male",
+   "referenceWeightKg": 34.9,
+   "kcalPerDay": 2220,
+   "kcalPerKgPerDay": 64,
+   "sourceId": "icmr_rda_2020"
+  },
+  {
+   "group": "girls_10_12",
+   "label": "Girls 10-12 years",
+   "minAge": 10,
+   "maxAge": 12,
+   "sex": "female",
+   "referenceWeightKg": 36.4,
+   "kcalPerDay": 2060,
+   "kcalPerKgPerDay": 57,
+   "sourceId": "icmr_rda_2020"
+  },
+  {
+   "group": "boys_13_15",
+   "label": "Boys 13-15 years",
+   "minAge": 13,
+   "maxAge": 15,
+   "sex": "male",
+   "referenceWeightKg": 50.5,
+   "kcalPerDay": 2860,
+   "kcalPerKgPerDay": 57,
+   "sourceId": "icmr_rda_2020"
+  },
+  {
+   "group": "girls_13_15",
+   "label": "Girls 13-15 years",
+   "minAge": 13,
+   "maxAge": 15,
+   "sex": "female",
+   "referenceWeightKg": 49.6,
+   "kcalPerDay": 2400,
+   "kcalPerKgPerDay": 49,
+   "sourceId": "icmr_rda_2020"
+  },
+  {
+   "group": "boys_16_18",
+   "label": "Boys 16-18 years",
+   "minAge": 16,
+   "maxAge": 18,
+   "sex": "male",
+   "referenceWeightKg": 64.4,
+   "kcalPerDay": 3320,
+   "kcalPerKgPerDay": 52,
+   "sourceId": "icmr_rda_2020"
+  },
+  {
+   "group": "girls_16_18",
+   "label": "Girls 16-18 years",
+   "minAge": 16,
+   "maxAge": 18,
+   "sex": "female",
+   "referenceWeightKg": 55.7,
+   "kcalPerDay": 2500,
+   "kcalPerKgPerDay": 45,
+   "sourceId": "icmr_rda_2020"
+  }
+ ],
+ "protein": {
+  "adults": [
+   {
+    "sex": "male",
+    "referenceWeightKg": 65.0,
+    "earGPerKg": 0.66,
+    "rdaGPerKg": 0.83,
+    "earGPerDay": 42.9,
+    "rdaGPerDay": 54.0,
+    "sourceId": "icmr_rda_2020"
+   },
+   {
+    "sex": "female",
+    "referenceWeightKg": 55.0,
+    "earGPerKg": 0.66,
+    "rdaGPerKg": 0.83,
+    "earGPerDay": 36.3,
+    "rdaGPerDay": 45.7,
+    "sourceId": "icmr_rda_2020"
+   }
+  ],
+  "adolescents": [
+   {
+    "group": "boys_13_15",
+    "minAge": 13,
+    "maxAge": 15,
+    "sex": "male",
+    "referenceWeightKg": 50.5,
+    "earGPerKg": 0.72,
+    "rdaGPerKg": 0.89,
+    "earGPerDay": 36.4,
+    "rdaGPerDay": 44.9,
+    "sourceId": "icmr_rda_2020"
+   },
+   {
+    "group": "girls_13_15",
+    "minAge": 13,
+    "maxAge": 15,
+    "sex": "female",
+    "referenceWeightKg": 49.6,
+    "earGPerKg": 0.7,
+    "rdaGPerKg": 0.87,
+    "earGPerDay": 34.7,
+    "rdaGPerDay": 43.2,
+    "sourceId": "icmr_rda_2020"
+   },
+   {
+    "group": "boys_16_18",
+    "minAge": 16,
+    "maxAge": 18,
+    "sex": "male",
+    "referenceWeightKg": 64.4,
+    "earGPerKg": 0.7,
+    "rdaGPerKg": 0.86,
+    "earGPerDay": 45.1,
+    "rdaGPerDay": 55.4,
+    "sourceId": "icmr_rda_2020"
+   },
+   {
+    "group": "girls_16_18",
+    "minAge": 16,
+    "maxAge": 18,
+    "sex": "female",
+    "referenceWeightKg": 55.7,
+    "earGPerKg": 0.67,
+    "rdaGPerKg": 0.83,
+    "earGPerDay": 37.3,
+    "rdaGPerDay": 46.2,
+    "sourceId": "icmr_rda_2020"
+   }
+  ],
+  "cerealBasedDietGPerKg": {
+   "value": 1.0,
+   "note": "For people consuming a cereal-based diet with low quality protein, the protein requirement is 1 g/kg per day. For good protein quality the cereal-legume-milk composition of the diet should be 3:1:2.5.",
+   "sourceId": "icmr_rda_2020"
+  },
+  "trainingAdultsGPerKg": {
+   "min": 1.2,
+   "max": 2.0,
+   "note": "Daily protein intake for athletes to support metabolic adaptation, repair, remodelling and protein turnover. Applies to training adults, not to children or adolescents.",
+   "sourceId": "acsm_and_dc_2016"
+  },
+  "perMealGPerKg": {
+   "min": 0.25,
+   "max": 0.3,
+   "note": "High quality protein per meal after key exercise sessions, to support muscle protein synthesis.",
+   "sourceId": "acsm_and_dc_2016"
+  },
+  "whoEnergyShare": {
+   "minPercentEnergy": 10,
+   "maxPercentEnergy": 15,
+   "gramsAt2000Kcal": {
+    "min": 50,
+    "max": 75
+   },
+   "note": "Protein intake at 10-15% of total daily energy is generally sufficient for adults. Intake may be greater than 15% during adolescence and for people actively building or maintaining significant muscle mass. Excessive protein can place a metabolic burden on the body, particularly the kidneys.",
+   "sourceId": "who_healthy_diet"
+  },
+  "weightLossProteinNote": {
+   "percentEnergy": 15,
+   "deficitKcalMin": 500,
+   "deficitKcalMax": 750,
+   "note": "Higher protein (around 15% of energy) may help preserve muscle mass during a typical energy-deficient weight loss diet of a 500-750 kcal/day deficit.",
+   "sourceId": "icmr_dgi_2024"
+  }
+ }
+}
