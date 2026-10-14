@@ -1,0 +1,148 @@
+name: Android build
+
+# Everything needed to analyse, test and build TrainerApp runs here, so no local
+# setup is required. Release signing is optional: when the keystore secrets are
+# absent the build falls back to debug signing and still produces artifacts.
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: android-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  # Pinned so a new Flutter release cannot change the result of a build.
+  FLUTTER_VERSION: "3.35.5"
+  JAVA_VERSION: "17"
+
+jobs:
+  build:
+    name: Analyse, test and build
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      # Gradle 8.12 does not support Java 25, and the Android Gradle Plugin
+      # expects a JDK 17 toolchain, so the version is pinned.
+      - name: Set up Java ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ env.JAVA_VERSION }}
+
+      - name: Set up Flutter ${{ env.FLUTTER_VERSION }}
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+
+      - name: Cache Gradle
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ runner.os }}-${{ hashFiles('android/**/*.gradle*', 'android/gradle/wrapper/gradle-wrapper.properties') }}
+          restore-keys: gradle-${{ runner.os }}-
+
+      - name: Show toolchain
+        run: |
+          flutter --version
+          java -version
+
+      - name: Resolve dependencies
+        run: flutter pub get
+
+      # Localisations are generated rather than committed, so this must run
+      # before anything that compiles Dart.
+      - name: Generate localizations
+        run: flutter gen-l10n
+
+      - name: Verify formatting
+        run: dart format --output=none --set-exit-if-changed lib test
+
+      - name: Analyse
+        run: flutter analyze
+
+      # Covers BMR and calorie maths, the safe-limit rules, age gating, split
+      # rotation, progressive overload, the budget meal planner and the
+      # integrity of every shipped data file.
+      - name: Unit tests
+        run: flutter test --reporter expanded
+
+      # ---------------------------------------------------------------------
+      # Release signing
+      #
+      # Set these four repository secrets to get an uploadable build:
+      #   ANDROID_KEYSTORE_BASE64   base64 of your .jks or .keystore file
+      #   ANDROID_KEYSTORE_PASSWORD keystore password
+      #   ANDROID_KEY_ALIAS         key alias inside the keystore
+      #   ANDROID_KEY_PASSWORD      password for that key
+      #
+      # With any of them missing, android/key.properties is not written and
+      # android/app/build.gradle.kts falls back to debug signing, so the
+      # workflow never fails for want of a key.
+      # ---------------------------------------------------------------------
+      - name: Configure release signing
+        id: signing
+        env:
+          KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          if [ -n "$KEYSTORE_BASE64" ] && [ -n "$KEYSTORE_PASSWORD" ] \
+             && [ -n "$KEY_ALIAS" ] && [ -n "$KEY_PASSWORD" ]; then
+            echo "$KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/upload-keystore.jks"
+            {
+              echo "storeFile=$RUNNER_TEMP/upload-keystore.jks"
+              echo "storePassword=$KEYSTORE_PASSWORD"
+              echo "keyAlias=$KEY_ALIAS"
+              echo "keyPassword=$KEY_PASSWORD"
+            } > android/key.properties
+            echo "signed=release" >> "$GITHUB_OUTPUT"
+            echo "Release signing configured from repository secrets."
+          else
+            echo "signed=debug" >> "$GITHUB_OUTPUT"
+            echo "::notice::Keystore secrets not set. Building with debug signing; these artifacts cannot be uploaded to Google Play."
+          fi
+
+      - name: Build release APK
+        run: flutter build apk --release
+
+      - name: Build release App Bundle
+        run: flutter build appbundle --release
+
+      - name: Remove signing material
+        if: always()
+        run: rm -f android/key.properties "$RUNNER_TEMP/upload-keystore.jks"
+
+      - name: Report artifact details
+        run: |
+          ls -lh build/app/outputs/flutter-apk/app-release.apk
+          ls -lh build/app/outputs/bundle/release/app-release.aab
+          AAPT=$(find "$ANDROID_HOME/build-tools" -name aapt2 | sort | tail -1)
+          "$AAPT" dump badging build/app/outputs/flutter-apk/app-release.apk \
+            | grep -E "^package|minSdkVersion|targetSdkVersion|application-label:" || true
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: trainerapp-apk-${{ steps.signing.outputs.signed }}
+          path: build/app/outputs/flutter-apk/app-release.apk
+          if-no-files-found: error
+
+      - name: Upload App Bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: trainerapp-aab-${{ steps.signing.outputs.signed }}
+          path: build/app/outputs/bundle/release/app-release.aab
+          if-no-files-found: error
