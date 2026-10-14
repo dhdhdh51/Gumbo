@@ -1,0 +1,159 @@
+{
+ "dataset": "sources",
+ "description": "Registry of the published sources behind every number shipped with TrainerApp. Each data value in assets/data carries a sourceId that resolves to one of these entries.",
+ "accessed": "2026-10-14",
+ "sources": [
+  {
+   "id": "who_healthy_diet",
+   "name": "Healthy diet (fact sheet)",
+   "publisher": "World Health Organization",
+   "year": 2026,
+   "edition": "Updated 26 January 2026",
+   "url": "https://www.who.int/news-room/fact-sheets/detail/healthy-diet",
+   "accessed": "2026-10-14"
+  },
+  {
+   "id": "who_pa_guidelines_2020",
+   "name": "WHO guidelines on physical activity and sedentary behaviour",
+   "publisher": "World Health Organization",
+   "year": 2020,
+   "edition": "ISBN 978-92-4-001512-8",
+   "url": "https://www.who.int/publications/i/item/9789240015128",
+   "accessed": "2026-10-14"
+  },
+  {
+   "id": "who_pa_factsheet",
+   "name": "Physical activity (fact sheet)",
+   "publisher": "World Health Organization",
+   "year": 2024,
+   "edition": "Updated 26 June 2024",
+   "url": "https://www.who.int/news-room/fact-sheets/detail/physical-activity",
+   "accessed": "2026-10-14"
+  },
+  {
+   "id": "icmr_dgi_2024",
+   "name": "Dietary Guidelines for Indians",
+   "publisher": "ICMR-National Institute of Nutrition, Hyderabad",
+   "year": 2024,
+   "edition": "Revised edition 2024",
+   "url": "https://www.nin.res.in/dietaryguidelines/pdfjs/locale/DGI_2024.pdf",
+   "accessed": "2026-10-14"
+  },
+  {
+   "id": "icmr_rda_2020",
+   "name": "Nutrient Requirements for Indians - Recommended Dietary Allowances (RDA) and Estimated Average Requirements (EAR)",
+   "publisher": "ICMR-National Institute of Nutrition, Hyderabad",
+   "year": 2020,
+   "edition": "Expert Group report, 2020",
+   "url": "https://www.nin.res.in/rdabook/brief_note.pdf",
+   "accessed": "2026-10-14"
+  },
+  {
+   "id": "ifct_2017",
+   "name": "Indian Food Composition Tables",
+   "publisher": "ICMR-National Institute of Nutrition, Hyderabad",
+   "year": 2017,
+   "edition": "IFCT 2017",
+   "url": "https://www.nin.res.in/ebooks/IFCT2017.pdf",
+   "accessed": "2026-10-14"
+  },
+  {
+   "id": "fssai_eat_right",
+   "name": "Eat Right India",
+   "publisher": "Food Safety and Standards Authority of India (FSSAI)",
+   "year": 2018,
+   "edition": "National programme, launched 2018",
+   "url": "https://eatrightindia.gov.in/",
+   "accessed": "2026-10-14"
+  },
+  {
+   "id": "fssai_transfat_2022",
+   "name": "Guidance Note on Trans Fat Free India @ 2022",
+   "publisher": "Food Safety and Standards Authority of India (FSSAI)",
+   "year": 2022,
+   "edition": "Food Safety and Standards (Prohibition and Restrictions on Sales) Second Amendment Regulations, 2021",
+   "url": "https://www.fssai.gov.in/upload/uploadfiles/files/Guidance_Note_TransFat_03_03_2022.pdf",
+   "accessed": "2026-10-14"
+  },
+  {
+   "id": "mifflin_st_jeor_1990",
+   "name": "A new predictive equation for resting energy expenditure in healthy individuals",
+   "publisher": "Mifflin MD, St Jeor ST, Hill LA, Scott BJ, Daugherty SA, Koh YO. American Journal of Clinical Nutrition 51(2):241-247",
+   "year": 1990,
+   "edition": "Am J Clin Nutr 1990;51:241-7",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/2305711/",
+   "accessed": "2026-10-14"
+  },
+  {
+   "id": "acsm_and_dc_2016",
+   "name": "Position of the Academy of Nutrition and Dietetics, Dietitians of Canada, and the American College of Sports Medicine: Nutrition and Athletic Performance",
+   "publisher": "Academy of Nutrition and Dietetics, Dietitians of Canada, American College of Sports Medicine. Medicine & Science in Sports & Exercise 48(3):543-568",
+   "year": 2016,
+   "edition": "Joint Position Statement, 2016",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/26920240/",
+   "accessed": "2026-10-14"
+  }
+ ],
+ "servingSources": [
+  {
+   "id": "icmr_portion_cereals",
+   "label": "Cereals and millets, 30 g raw per portion",
+   "sourceId": "icmr_dgi_2024"
+  },
+  {
+   "id": "icmr_portion_pulses",
+   "label": "Pulses, 30 g raw per portion",
+   "sourceId": "icmr_dgi_2024"
+  },
+  {
+   "id": "icmr_portion_milk",
+   "label": "Milk and milk products, 100 g or ml per portion",
+   "sourceId": "icmr_dgi_2024"
+  },
+  {
+   "id": "icmr_portion_egg",
+   "label": "Egg, 50 g per portion",
+   "sourceId": "icmr_dgi_2024"
+  },
+  {
+   "id": "icmr_portion_flesh",
+   "label": "Meat, chicken or fish, 50 g per portion",
+   "sourceId": "icmr_dgi_2024"
+  },
+  {
+   "id": "icmr_portion_roots",
+   "label": "Roots and tubers, 100 g per portion",
+   "sourceId": "icmr_dgi_2024"
+  },
+  {
+   "id": "icmr_portion_glv",
+   "label": "Green leafy vegetables, 100 g per portion",
+   "sourceId": "icmr_dgi_2024"
+  },
+  {
+   "id": "icmr_portion_vegetables",
+   "label": "Other vegetables, 100 g per portion",
+   "sourceId": "icmr_dgi_2024"
+  },
+  {
+   "id": "icmr_portion_fruits",
+   "label": "Fruits, 100 g per portion",
+   "sourceId": "icmr_dgi_2024"
+  },
+  {
+   "id": "icmr_portion_sugar",
+   "label": "Sugar, 5 g per portion",
+   "sourceId": "icmr_dgi_2024"
+  },
+  {
+   "id": "icmr_portion_oil",
+   "label": "Visible fat and oils, 5 g per portion",
+   "sourceId": "icmr_dgi_2024"
+  },
+  {
+   "id": "icmr_myplate_nuts",
+   "label": "Nuts and seeds, 35 g per day in My Plate for the Day (2000 kcal)",
+   "sourceId": "icmr_dgi_2024"
+  }
+ ]
+}

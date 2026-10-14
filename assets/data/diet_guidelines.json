@@ -1,0 +1,179 @@
+{
+ "dataset": "diet_guidelines",
+ "description": "Daily diet targets and limits taken from the WHO Healthy diet fact sheet, the ICMR-NIN Dietary Guidelines for Indians 2024 and FSSAI regulation.",
+ "energyFactors": {
+  "label": "Energy yielded per gram of each macronutrient",
+  "fatKcalPerGram": 9,
+  "proteinKcalPerGram": 4,
+  "carbohydrateKcalPerGram": 4,
+  "note": "Fats are a concentrated source of energy providing 9 kcal/g, while protein and carbohydrate give 4 kcal/g. These factors are used to convert the app's calorie target into gram ranges, and to derive the energy value of the edible oils and fats, for which IFCT 2017 carries no computed energy figure.",
+  "sourceId": "icmr_dgi_2024"
+ },
+ "macronutrientRanges": [
+  {
+   "id": "carbohydrate_percent_energy",
+   "label": "Carbohydrate",
+   "minPercentEnergy": 45,
+   "maxPercentEnergy": 75,
+   "note": "For most people a variety of unrefined carbohydrates should make up roughly 45-75% of total daily energy, coming mainly from whole grains, vegetables, fruits and pulses.",
+   "sourceId": "who_healthy_diet"
+  },
+  {
+   "id": "fat_percent_energy",
+   "label": "Total fat",
+   "minPercentEnergy": 15,
+   "maxPercentEnergy": 30,
+   "note": "In adults a minimum of 15% of daily energy should come from fat, and limiting total fat to 30% or less of total daily energy may help prevent unhealthy weight gain.",
+   "sourceId": "who_healthy_diet"
+  },
+  {
+   "id": "protein_percent_energy",
+   "label": "Protein",
+   "minPercentEnergy": 10,
+   "maxPercentEnergy": 15,
+   "note": "Protein at 10-15% of total daily energy is generally sufficient for adults. Intake may be higher during adolescence and for people building or maintaining muscle mass.",
+   "sourceId": "who_healthy_diet"
+  }
+ ],
+ "limits": [
+  {
+   "id": "free_sugars",
+   "label": "Free sugars",
+   "maxPercentEnergy": 10,
+   "idealMaxPercentEnergy": 5,
+   "gramsAt2000Kcal": 50,
+   "teaspoonsAt2000Kcal": 12,
+   "note": "Free sugars should be under 10% of total daily energy, which is about 50 g for someone eating 2000 kcal. Reducing to 5% or less may give additional health benefits.",
+   "sourceId": "who_healthy_diet"
+  },
+  {
+   "id": "added_sugar_india",
+   "label": "Added sugar (India)",
+   "maxPercentEnergy": 5,
+   "maxGramsPerDayMin": 25,
+   "maxGramsPerDayMax": 30,
+   "note": "Sugar should be less than 5% of total energy per day. If sugar is taken it must be restricted to 25-30 g per day, and cereals reduced to keep total calories the same.",
+   "sourceId": "icmr_dgi_2024"
+  },
+  {
+   "id": "saturated_fat",
+   "label": "Saturated fat",
+   "maxPercentEnergy": 10,
+   "note": "No more than 10% of total energy intake should come from saturated fat.",
+   "sourceId": "who_healthy_diet"
+  },
+  {
+   "id": "trans_fat",
+   "label": "Trans fat",
+   "maxPercentEnergy": 1,
+   "note": "No more than 1% of total energy should come from trans fat of any type. Industrially produced trans fats are not part of a healthy diet and should be avoided.",
+   "sourceId": "who_healthy_diet"
+  },
+  {
+   "id": "trans_fat_fssai_product_limit",
+   "label": "Industrial trans fat in food products (India)",
+   "maxPercentByMassOfFat": 2,
+   "effectiveFrom": "2022-01-01",
+   "note": "Food products in which edible oils and fats are used as an ingredient must not contain industrial trans fatty acids above 2% by mass of the total oils and fats in the product.",
+   "sourceId": "fssai_transfat_2022"
+  },
+  {
+   "id": "salt",
+   "label": "Salt",
+   "maxGramsPerDay": 5,
+   "sodiumGramsPerDay": 2,
+   "note": "In adults salt intake should be under 5 g per day, which is about 2 g of sodium. For children the maximum is lower and depends on energy intake.",
+   "sourceId": "who_healthy_diet",
+   "secondarySourceId": "icmr_dgi_2024"
+  },
+  {
+   "id": "visible_fat",
+   "label": "Visible fat (cooking oil)",
+   "minGramsPerDay": 20,
+   "maxGramsPerDay": 50,
+   "byGroup": [
+    {"sex": "female", "activity": "sedentary", "gramsPerDay": 20},
+    {"sex": "female", "activity": "moderate", "gramsPerDay": 30},
+    {"sex": "female", "activity": "heavy", "gramsPerDay": 40},
+    {"sex": "male", "activity": "sedentary", "gramsPerDay": 30},
+    {"sex": "male", "activity": "moderate", "gramsPerDay": 40},
+    {"sex": "male", "activity": "heavy", "gramsPerDay": 50}
+   ],
+   "note": "Visible fat or cooking oil must be limited to 20-50 g per person per day depending on energy needs. Not more than 27-30 g is required for a 2000 kcal diet.",
+   "sourceId": "icmr_dgi_2024"
+  }
+ ],
+ "targets": [
+  {
+   "id": "fruit_and_vegetables",
+   "label": "Fruits and vegetables",
+   "minGramsPerDay": 400,
+   "appliesFromAge": 10,
+   "childTargets": [
+    {"minAge": 2, "maxAge": 5, "minGramsPerDay": 250},
+    {"minAge": 6, "maxAge": 9, "minGramsPerDay": 350}
+   ],
+   "note": "Everyone older than 10 years should aim for at least 400 g of fruits and vegetables per day, with lesser amounts for younger children.",
+   "sourceId": "who_healthy_diet"
+  },
+  {
+   "id": "dietary_fibre",
+   "label": "Dietary fibre",
+   "minGramsPerDay": 25,
+   "appliesFromAge": 10,
+   "childTargets": [
+    {"minAge": 2, "maxAge": 5, "minGramsPerDay": 15},
+    {"minAge": 6, "maxAge": 9, "minGramsPerDay": 21}
+   ],
+   "note": "Everyone older than 10 years should aim for at least 25 g of naturally occurring dietary fibre from foods per day.",
+   "sourceId": "who_healthy_diet"
+  },
+  {
+   "id": "potassium",
+   "label": "Potassium",
+   "minMilligramsPerDay": 3510,
+   "minMmolPerDay": 90,
+   "note": "A potassium intake of at least 90 mmol/day (3510 mg/day) for adults may be beneficial. Intake can be increased by eating fresh fruit and vegetables.",
+   "sourceId": "who_healthy_diet"
+  },
+  {
+   "id": "water",
+   "label": "Water",
+   "millilitresPerDay": 2000,
+   "glassesPerDay": 8,
+   "millilitresPerGlass": 250,
+   "note": "A normal healthy person needs to drink about eight glasses, roughly two litres, of water including beverages per day. This requirement increases in very hot weather and with vigorous physical activity.",
+   "sourceId": "icmr_dgi_2024"
+  }
+ ],
+ "myPlate2000Kcal": {
+  "label": "ICMR-NIN My Plate for the Day, 2000 kcal",
+  "note": "Raw weights per day. Vegetables, fruits, green leafy vegetables, tubers and roots should form about half the plate. At least half of the recommended cereals should be whole grains such as millets; millets can be 30-40% of total recommended cereals by raw weight.",
+  "groups": [
+   {"group": "cereal", "label": "Cereals and millets", "gramsPerDay": 250},
+   {"group": "pulse", "label": "Pulses, eggs and flesh foods", "gramsPerDay": 85},
+   {"group": "vegetable", "label": "Vegetables", "gramsPerDay": 400},
+   {"group": "fruit", "label": "Fruits", "gramsPerDay": 100},
+   {"group": "dairy", "label": "Milk and curd", "millilitresPerDay": 300},
+   {"group": "nut", "label": "Nuts and seeds", "gramsPerDay": 35},
+   {"group": "fat", "label": "Oils and fats", "gramsPerDay": 27}
+  ],
+  "sourceId": "icmr_dgi_2024"
+ },
+ "bmiCutoffs": {
+  "label": "BMI cut-offs for Indian adults (Asian cut-offs)",
+  "underweightBelow": 18.5,
+  "normalMin": 18.5,
+  "normalMax": 23.0,
+  "overweightMin": 23.0,
+  "overweightMax": 27.5,
+  "obeseAbove": 27.5,
+  "note": "For Asians it is recommended that BMI should be between 18.5 and 23 kg/m2, because at a given BMI they tend to have a higher percentage of body fat than Caucasians and Europeans. Overweight is 23-27.5 and obesity is above 27.5.",
+  "sourceId": "icmr_dgi_2024"
+ },
+ "eatRightIndia": {
+  "label": "FSSAI Eat Right India",
+  "note": "National FSSAI programme that promotes eating safe, eating healthy and eating sustainably, including cutting down on salt, sugar and fat in everyday food.",
+  "sourceId": "fssai_eat_right"
+ }
+}

@@ -1,0 +1,109 @@
+{
+ "dataset": "activity_guidelines",
+ "description": "Weekly physical activity guidance by age band. Aerobic and muscle-strengthening figures are the WHO 2020 recommendations; the Indian age-band restatement is from ICMR-NIN Dietary Guidelines for Indians 2024.",
+ "ageBands": [
+  {
+   "id": "child_5_17",
+   "minAge": 5,
+   "maxAge": 17,
+   "label": "Children and adolescents (5-17 years)",
+   "aerobicMinutesPerDayAverage": 60,
+   "aerobicMinutesPerWeek": 420,
+   "aerobicIntensity": "moderate_to_vigorous",
+   "muscleStrengtheningDaysPerWeek": 3,
+   "muscleStrengtheningNote": "Vigorous-intensity aerobic activity plus activity that strengthens muscle and bone on at least 3 days a week.",
+   "sedentaryNote": "Limit time spent being sedentary, especially recreational screen time.",
+   "sourceId": "who_pa_guidelines_2020",
+   "secondarySourceId": "icmr_dgi_2024"
+  },
+  {
+   "id": "adult_18_64",
+   "minAge": 18,
+   "maxAge": 64,
+   "label": "Adults (18-64 years)",
+   "aerobicMinutesPerWeekMin": 150,
+   "aerobicMinutesPerWeekMax": 300,
+   "vigorousMinutesPerWeekMin": 75,
+   "vigorousMinutesPerWeekMax": 150,
+   "aerobicIntensity": "moderate",
+   "muscleStrengtheningDaysPerWeek": 2,
+   "muscleStrengtheningNote": "Muscle-strengthening activity at moderate or greater intensity involving all major muscle groups on 2 or more days a week.",
+   "additionalBenefitNote": "More than 300 minutes of moderate-intensity, or more than 150 minutes of vigorous-intensity activity per week gives additional health benefits.",
+   "sedentaryNote": "Limit sedentary time. Replacing sedentary time with activity of any intensity, including light intensity, benefits health.",
+   "sourceId": "who_pa_guidelines_2020",
+   "secondarySourceId": "icmr_dgi_2024"
+  },
+  {
+   "id": "older_65_plus",
+   "minAge": 65,
+   "maxAge": null,
+   "label": "Older adults (65 years and older)",
+   "aerobicMinutesPerWeekMin": 150,
+   "aerobicMinutesPerWeekMax": 300,
+   "vigorousMinutesPerWeekMin": 75,
+   "vigorousMinutesPerWeekMax": 150,
+   "aerobicIntensity": "moderate",
+   "muscleStrengtheningDaysPerWeek": 2,
+   "balanceAndStrengthDaysPerWeek": 3,
+   "muscleStrengtheningNote": "Muscle-strengthening activity at moderate or greater intensity involving all major muscle groups on 2 or more days a week.",
+   "balanceNote": "As part of weekly activity, do varied multicomponent activity emphasising functional balance and strength training at moderate or greater intensity on 3 or more days a week, to improve functional capacity and prevent falls.",
+   "sedentaryNote": "Limit sedentary time. Replacing sedentary time with activity of any intensity benefits health.",
+   "sourceId": "who_pa_guidelines_2020",
+   "secondarySourceId": "icmr_dgi_2024"
+  }
+ ],
+ "indiaRestatement": [
+  {
+   "id": "icmr_child_5_19",
+   "label": "Children and adolescents (over 5-19 years)",
+   "minutesPerDay": 60,
+   "intensity": "moderate_to_vigorous",
+   "strengthDaysPerWeek": 3,
+   "sourceId": "icmr_dgi_2024"
+  },
+  {
+   "id": "icmr_adult_19_60",
+   "label": "Adults (over 19-60 years)",
+   "moderateMinutesPerDayMin": 30,
+   "moderateMinutesPerDayMax": 60,
+   "daysPerWeek": 5,
+   "vigorousMinutesPerDay": 15,
+   "strengthDaysPerWeek": 2,
+   "sourceId": "icmr_dgi_2024"
+  },
+  {
+   "id": "icmr_elderly_60_plus",
+   "label": "Elderly (over 60 years)",
+   "sameAsAdults": true,
+   "balanceAndStrengthDaysPerWeek": 3,
+   "sourceId": "icmr_dgi_2024"
+  }
+ ],
+ "medicalClearanceNotes": [
+  {
+   "id": "sedentary_consult",
+   "text": "If you follow a sedentary lifestyle it is wise to consult a doctor before starting an exercise programme.",
+   "sourceId": "icmr_dgi_2024"
+  },
+  {
+   "id": "progress_gradually",
+   "text": "Exercise intensity and duration should be increased gradually. Shortness of breath, pain, nausea, vomiting and headache are warning signs that the body needs rest.",
+   "sourceId": "icmr_dgi_2024"
+  },
+  {
+   "id": "chronic_condition_consult",
+   "text": "People with illnesses or chronic diseases such as heart disease, high blood pressure, diabetes, asthma, osteoporosis and obesity should consult a physician before taking up an exercise programme.",
+   "sourceId": "icmr_dgi_2024"
+  },
+  {
+   "id": "over_40_consult",
+   "text": "Men and women over 40 years of age should consult a doctor or healthcare provider before starting a vigorous physical activity programme.",
+   "sourceId": "icmr_dgi_2024"
+  },
+  {
+   "id": "any_activity_counts",
+   "text": "Doing some physical activity is better than doing none. Start with small amounts and gradually increase frequency, intensity and duration.",
+   "sourceId": "who_pa_guidelines_2020"
+  }
+ ]
+}

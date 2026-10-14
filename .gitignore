@@ -1,0 +1,38 @@
+# Flutter / Dart
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+pubspec.lock.bak
+
+# Generated localizations are produced by `flutter gen-l10n`, which the CI
+# workflow runs before analyse, test and build.
+/lib/l10n/gen/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+.history/
+
+# Android local config and anything that could leak a signing key
+/android/local.properties
+/android/key.properties
+/android/.gradle/
+/android/captures/
+**/*.keystore
+**/*.jks
+**/*.keystore.base64
+
+# OS noise
+.DS_Store
+Thumbs.db
+
+# Local toolchain and research scratch space, never part of the app
+/.toolchain/
+/.research/
